@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/jae/Desktop/convolution/third_party/thr_pool.c
+thr_pool.h
+/Users/jae/Desktop/convolution/third_party/thr_pool.h
+stdlib.h
+-
+signal.h
+-
+errno.h
+-
+
+/Users/jae/Desktop/convolution/third_party/thr_pool.h
+pthread.h
+-
+
