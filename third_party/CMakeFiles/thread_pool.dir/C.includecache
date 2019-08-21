@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/Users/jae/Desktop/convolution/third_party/thr_pool.c
+/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/third_party/thr_pool.c
 thr_pool.h
-/Users/jae/Desktop/convolution/third_party/thr_pool.h
+/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/third_party/thr_pool.h
 stdlib.h
 -
 signal.h
@@ -16,7 +16,7 @@ signal.h
 errno.h
 -
 
-/Users/jae/Desktop/convolution/third_party/thr_pool.h
+/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/third_party/thr_pool.h
 pthread.h
 -
 

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/jae/Desktop/convolution/src/main.c
+/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/src/main.c
 stdio.h
 -
 stdlib.h

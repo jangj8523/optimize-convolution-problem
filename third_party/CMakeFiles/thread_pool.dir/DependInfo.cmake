@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/jae/Desktop/convolution/third_party/thr_pool.c" "/Users/jae/Desktop/convolution/third_party/CMakeFiles/thread_pool.dir/thr_pool.c.o"
+  "/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/third_party/thr_pool.c" "/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/third_party/CMakeFiles/thread_pool.dir/thr_pool.c.o"
   )
-set(CMAKE_C_COMPILER_ID "Clang")
+set(CMAKE_C_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
