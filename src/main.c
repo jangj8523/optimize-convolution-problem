@@ -71,9 +71,9 @@ void _populate_m_matrix(unsigned char **m_matrix)
 
 
 // Debugging purposes
-void _print_m_matrix(signed char ** m_matrix)
+void _print_m_matrix(unsigned char ** m_matrix)
 {
-  for (size_t i = 0; i < ROW+2; i++)
+  for (size_t i = 0; i < ROW; i++)
   {
     for (size_t j = 0; j < COL; j++)
     {
@@ -106,8 +106,7 @@ void _fill_convolution_table(signed short int **matrix, unsigned char **m_matrix
 
         matrix[i][j] -= m_matrix[i][j];
         matrix[i+2][j] += m_matrix[i][j];
-        if (i-2 >= 0)
-          printf("%hd %hd\n", matrix[i][j], matrix[i-2][j]);
+
       }
     }
   }
@@ -207,12 +206,12 @@ void _run_convolution()
   // _print_m_matrix(m_matrix);
   // free_m_matrix(m_matrix);
 
+
+
+  printf("\n================== RESULTS ===================\n");
   start_time = clock();
   _fill_convolution_table(dx_matrix, m_matrix, 0, ROW-1, TRUE);
   end_time = clock();
-
-  printf("\n================== RESULTS ===================\n");
-
   printf("Time it took to compute Dx matrix: %f seconds\n", ((double)(end_time - start_time))/CLOCKS_PER_SEC);
   start_time = clock();
   _fill_convolution_table(dy_matrix, m_matrix, 0, COL-1, FALSE);
@@ -242,9 +241,6 @@ void _run_convolution()
 int main()
 {
   printf("========= RUNNING Convolve Optimization =========!\n");
-  // static size_t row;
-  // static size_t col;
-
   printf( "Enter the size of row: ");
   scanf("%zd", &ROW);
   printf( "Enter the size fo col: ");
