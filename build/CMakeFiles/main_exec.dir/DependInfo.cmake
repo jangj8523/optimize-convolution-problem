@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/src/main.c" "/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/main_exec.dir/src/main.c.o"
+  "/Users/jae/Desktop/convolution/src/main.c" "/Users/jae/Desktop/convolution/build/CMakeFiles/main_exec.dir/src/main.c.o"
   )
-set(CMAKE_C_COMPILER_ID "GNU")
+set(CMAKE_C_COMPILER_ID "Clang")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
