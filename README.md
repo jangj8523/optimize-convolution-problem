@@ -3,7 +3,7 @@
 
 Implementation approach: <br /> 
 1). Dynamically allocate three matrices (Dx, Dy, M) <br /> 
-2). Randomly initialize unsigned char for all entries of matrix M using rand() % 256  <br />  
+2). Randomly initialize unsigned char for all entries of matrix M using rand() % 256  
 3). Convolve and fill in the Dx, Dy matrices in O(n^2) each:  <br /> 
   - aimed for simplicity to avoid writing new functions (or even inline functions)
   - leveraged the fact that the filter is -1, 0, 1. So each Dx[i][j] was the difference M[1][j+1] subtracted by M[i][j-1].
