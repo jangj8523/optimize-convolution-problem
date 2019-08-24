@@ -9,7 +9,9 @@ typedef enum { FALSE, TRUE } boolean;
 
 
 // Unused
-const signed char filter [3] = {-1, 0, 1};
+// const signed char filter [3] = {-1, 0, 1};
+
+
 
 
 
@@ -42,17 +44,20 @@ void _print_m_matrix(int *m_matrix, size_t total_size)
 
 void _fill_convolution_table(unsigned char* m_matrix, int *matrix, size_t fixed_axis, size_t total_size)
 {
-  size_t next_point = fixed_axis;
-  size_t curr_point = 0;
+  size_t next_point = 0;
+  size_t curr_point = -2;
   for (size_t i = 0; i < total_size; i++)
   {
 
     if(i == next_point) {
       curr_point+=2;
       next_point+=fixed_axis;
+      matrix[curr_point] = 0;
+      matrix[curr_point+1] = 0;
     }
-    matrix[curr_point] = m_matrix[i];
-    matrix[curr_point+2] += m_matrix[i];
+
+    matrix[curr_point] -= m_matrix[i];
+    matrix[curr_point+2] = m_matrix[i];
     curr_point+=1;
   }
 }
@@ -126,11 +131,11 @@ void _run_convolution(size_t row, size_t col)
   _search_min_max(dx_matrix, row*(col+2), dx_min_max);
   _search_min_max(dy_matrix, (row+2)*col, dy_min_max);
 
-  printf("Min value in Dx matrix: %d\n", dx_min_max[0]);
-  printf("Max value in Dx matrix: %d\n\n", dx_min_max[1]);
+  printf("Min value in Dx matrix: %hd\n", dx_min_max[0]);
+  printf("Max value in Dx matrix: %hd\n\n", dx_min_max[1]);
 
-  printf("Min value in Dy matrix: %d\n", dy_min_max[0]);
-  printf("Max value in Dy matrix: %d\n", dy_min_max[1]);
+  printf("Min value in Dy matrix: %hd\n", dy_min_max[0]);
+  printf("Max value in Dy matrix: %hd\n", dy_min_max[1]);
 
   free(dx_matrix);
   free(dy_matrix);

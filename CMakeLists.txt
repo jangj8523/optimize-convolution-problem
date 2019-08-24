@@ -1,7 +1,11 @@
 cmake_minimum_required (VERSION 2.6)
 project (Tutorial)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ")
-set(CMAKE_BUILD_TYPE Debug)
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Debug)
+endif()
+set(CMAKE_CXX_FLAGS "-Wall -Wextra")
+set(CMAKE_CXX_FLAGS_RELEASE "-O0")
 
 
 # The version number.
