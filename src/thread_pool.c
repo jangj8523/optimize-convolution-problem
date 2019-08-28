@@ -15,7 +15,9 @@
 
 struct thread_worker {
     thread_func_t      func;
-    void              *args;
+    // void              *args;
+    size_t               row;
+    size_t               col;
     struct thread_worker *next;
 };
 
@@ -36,7 +38,6 @@ static thread_worker_t *get_thread_worker (thread_pool_t *t_pool)
   next_worker = t_pool->work_first;
   if (next_worker == NULL)
   {
-    printf ("this was null\n");
     return NULL;
   }
 
@@ -77,7 +78,7 @@ static void *thread_function(void *tm)
     next_worker = get_thread_worker(tp);
     if (next_worker != NULL)
     {
-      (*next_worker->func)(next_worker->args);
+      (*next_worker->func)(next_worker->row, next_worker->col);
       free_thread_worker(next_worker);
     }
 
@@ -111,11 +112,12 @@ void threadpool_wait(thread_pool_t *t_pool)
 
 
 // Add new work to the threadpool
-bool threadpool_add_work(thread_pool_t *t_pool, void (*new_func), void *args)
+bool threadpool_add_work(thread_pool_t *t_pool, void (*new_func), size_t row, size_t col)
 {
   thread_worker_t *new_worker = malloc(sizeof(thread_worker_t));
   new_worker->func = new_func;
-  new_worker->args = args;
+  new_worker->row = row;
+  new_worker->col = col;
   new_worker->next = NULL;
 
   pthread_mutex_lock(&(t_pool->pool_mutex));

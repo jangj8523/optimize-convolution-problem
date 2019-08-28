@@ -8,12 +8,12 @@
 struct thread_pool;
 typedef struct thread_pool thread_pool_t;
 
-typedef void (*thread_func_t)(void *arg);
+typedef void (*thread_func_t)(size_t, size_t);
 
 thread_pool_t *create_thread_pool(size_t num);
 void threadpool_destroy(thread_pool_t *tm);
 
-bool threadpool_add_work(thread_pool_t *tm, void (*func), void *arg);
+bool threadpool_add_work(thread_pool_t *tm, void (*func), size_t row, size_t col);
 void threadpool_wait(thread_pool_t *tm);
 
 typedef struct thread_worker thread_worker_t;
