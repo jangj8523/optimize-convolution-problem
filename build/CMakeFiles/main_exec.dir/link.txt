@@ -1,1 +1,1 @@
-/usr/bin/cc -g  -rdynamic CMakeFiles/main_exec.dir/src/main.c.o  -o main_exec 
+/usr/bin/cc -g  -rdynamic CMakeFiles/main_exec.dir/src/main.c.o  -o main_exec -Wl,-rpath,/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build libmultithread.so -lpthread 

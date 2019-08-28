@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC -g  -shared -Wl,-soname,libmultithread.so -o libmultithread.so CMakeFiles/multithread.dir/src/thread_pool.c.o -lpthread 

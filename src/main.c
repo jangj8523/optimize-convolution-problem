@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <limits.h>
+#include "thread_pool.h"
 
 typedef enum { FALSE, TRUE } boolean;
 
@@ -84,9 +85,12 @@ void _search_min_max(int *matrix, size_t total_size, int arr[])
 
 
 
-void _run_convolution(size_t row, size_t col)
+void _run_convolution(void *args)
 {
   // srand(0);
+
+  size_t row = *(int *)args;
+  size_t col = *((int*)args + 1);
   clock_t start_time;
   clock_t end_time;
   int dx_min_max [2];
@@ -153,6 +157,7 @@ int main()
   printf("========= RUNNING Convolve Optimization =========!\n");
   size_t row;
   size_t col;
+  thread_pool_t *thread_pool = create_thread_pool(1);
 
   printf( "Enter the size of row: ");
   scanf("%zd", &row);
@@ -161,9 +166,15 @@ int main()
   printf ("\n ========= SIMULATING convolution =========\n");
   printf ("With %zu rows and %zu cols\n", row, col);
 
-  _run_convolution(row, col);
+  int *args = malloc(sizeof(int) * 2);
+  *args = row;
+  *(args+1) = col;
+  threadpool_add_work(thread_pool, _run_convolution, args);
+  threadpool_wait(thread_pool);
+  threadpool_destroy(thread_pool);
   printf ("\n ========= SIMULATION done =========\n");
 
+  free (args);
 
   return 0;
 }

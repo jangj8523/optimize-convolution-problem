@@ -187,6 +187,9 @@ Tutorial_BINARY_DIR:STATIC=/home/jaewoo/Desktop/casual_workspace/optimize-convol
 //Value Computed by CMake
 Tutorial_SOURCE_DIR:STATIC=/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem
 
+//Dependencies for target
+multithread_LIB_DEPENDS:STATIC=
+
 
 ########################
 # INTERNAL cache entries

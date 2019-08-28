@@ -1,0 +1,118 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_c0c3a/fast"
+make[1]: Entering directory '/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_c0c3a.dir/build.make CMakeFiles/cmTC_c0c3a.dir/build
+make[2]: Entering directory '/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c0c3a.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_c0c3a.dir/CheckSymbolExists.c.o   -c /home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_c0c3a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c0c3a.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_c0c3a.dir/CheckSymbolExists.c.o  -o cmTC_c0c3a 
+CMakeFiles/cmTC_c0c3a.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_c0c3a.dir/build.make:97: recipe for target 'cmTC_c0c3a' failed
+make[2]: *** [cmTC_c0c3a] Error 1
+make[2]: Leaving directory '/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_c0c3a/fast' failed
+make[1]: *** [cmTC_c0c3a/fast] Error 2
+make[1]: Leaving directory '/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp'
+
+File /home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b60ad/fast"
+make[1]: Entering directory '/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_b60ad.dir/build.make CMakeFiles/cmTC_b60ad.dir/build
+make[2]: Entering directory '/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b60ad.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_b60ad.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_b60ad
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b60ad.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_b60ad.dir/CheckFunctionExists.c.o  -o cmTC_b60ad -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_b60ad.dir/build.make:97: recipe for target 'cmTC_b60ad' failed
+make[2]: *** [cmTC_b60ad] Error 1
+make[2]: Leaving directory '/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_b60ad/fast' failed
+make[1]: *** [cmTC_b60ad/fast] Error 2
+make[1]: Leaving directory '/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2a9eb/fast"
+make[1]: Entering directory '/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_2a9eb.dir/build.make CMakeFiles/cmTC_2a9eb.dir/build
+make[2]: Entering directory '/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2a9eb.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_2a9eb.dir/CheckSymbolExists.c.o   -c /home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_2a9eb
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2a9eb.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_2a9eb.dir/CheckSymbolExists.c.o  -o cmTC_2a9eb 
+CMakeFiles/cmTC_2a9eb.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_2a9eb.dir/build.make:97: recipe for target 'cmTC_2a9eb' failed
+make[2]: *** [cmTC_2a9eb] Error 1
+make[2]: Leaving directory '/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_2a9eb/fast' failed
+make[1]: *** [cmTC_2a9eb/fast] Error 2
+make[1]: Leaving directory '/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp'
+
+File /home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_fddac/fast"
+make[1]: Entering directory '/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_fddac.dir/build.make CMakeFiles/cmTC_fddac.dir/build
+make[2]: Entering directory '/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_fddac.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_fddac.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_fddac
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fddac.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_fddac.dir/CheckFunctionExists.c.o  -o cmTC_fddac -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_fddac.dir/build.make:97: recipe for target 'cmTC_fddac' failed
+make[2]: *** [cmTC_fddac] Error 1
+make[2]: Leaving directory '/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_fddac/fast' failed
+make[1]: *** [cmTC_fddac/fast] Error 2
+make[1]: Leaving directory '/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles/CMakeTmp'
+
+

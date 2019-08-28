@@ -90,6 +90,7 @@ main_exec_EXTERNAL_OBJECTS =
 
 main_exec: CMakeFiles/main_exec.dir/src/main.c.o
 main_exec: CMakeFiles/main_exec.dir/build.make
+main_exec: libmultithread.so
 main_exec: CMakeFiles/main_exec.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jaewoo/Desktop/casual_workspace/optimize-convolution-problem/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable main_exec"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main_exec.dir/link.txt --verbose=$(VERBOSE)
