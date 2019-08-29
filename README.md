@@ -18,4 +18,4 @@ Future Optimization:  <br />
 MultiThreading Results: <br />
 - Description: Implemented the thread pool class so that the program can leverage multi-threading to compute multiple convolution. With 4 threads,the processor takes up 20% of its maximum capacity. The time took to compute finish all the tasks ( 10000 by 10000 matrix, with 50 iterations) was 1335.287249 seconds. The singlethreaded program only took up 6% of its maximum capacity and took 111.048120 seconds. The reason why multithreading took longer than single-threading approach is having 100,000 by 100,000 matrix of signed int takes up a lot of RAM. So the program wouldn't be able to multithread.
 
-However, computing the convolution of 100 by 100 matrix over 50,000 iteration. A single threaded approach took 10.115997 seconds while a multithreaded approach took  131.982776 seconds.
+However, computing the convolution of 100 by 100 matrix over 50,000 iteration. A single threaded approach took 10.115997 seconds while a multithreaded approach took  131.982776 seconds. The problem with the samples above is the computation task was too small for the program to really reap the benefits of multithread. 
