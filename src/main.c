@@ -85,11 +85,13 @@ void _search_min_max(int *matrix, size_t total_size, int arr[])
 
 
 
-void _run_convolution(size_t row, size_t col)
+void _run_convolution(void *args)
 {
   // srand(0);
-  // size_t row = *(int *)args;
-  // size_t col = *((int*)args + 1);
+
+  size_t row = *(int *)args;
+  size_t col = *((int*)args + 1);
+  size_t loop = *((int*)args+2);
   clock_t start_time;
   clock_t end_time;
   int dx_min_max [2];
@@ -103,50 +105,44 @@ void _run_convolution(size_t row, size_t col)
   // _print_m_matrix(m_matrix);
   // free_m_matrix(m_matrix);
 
-  printf("\n================== RESULTS ===================\n");
+  // printf("\n================== RESULTS ===================\n");
+  size_t i = 0;
+  while (i < 9000) {
+    start_time = clock();
+    _fill_convolution_table(m_matrix, dx_matrix, row, total_size);
+    end_time = clock();
+    i+=1;
+  }
+  // printf("Time it took to compute Dx matrix: %f seconds\n", ((double)(end_time - start_time))/CLOCKS_PER_SEC);
 
-  start_time = clock();
-  _fill_convolution_table(m_matrix, dx_matrix, row, total_size);
-  end_time = clock();
-  printf("Time it took to compute Dx matrix: %f seconds\n", ((double)(end_time - start_time))/CLOCKS_PER_SEC);
-
-
-  start_time = clock();
-  _fill_convolution_table(m_matrix, dy_matrix, col, total_size);
-  end_time = clock();
-  printf("Time it took to compute Dy matrix: %f seconds\n", ((double)(end_time - start_time))/CLOCKS_PER_SEC);
+  while (i < 15000) {
+    start_time = clock();
+    _fill_convolution_table(m_matrix, dy_matrix, col, total_size);
+    end_time = clock();
+    i+=1;
+  }
+  // printf("Time it took to compute Dy matrix: %f seconds\n", ((double)(end_time - start_time))/CLOCKS_PER_SEC);
 
   //_print_m_matrix(dx_matrix, (row+2)*col);
   free(m_matrix);
 
 
-  //
-  //
-  // printf("Time it took to compute Dx matrix: %f seconds\n", ((double)(end_time - start_time))/CLOCKS_PER_SEC);
-  // start_time = clock();
-  // _fill_convolution_table(m_matrix, dy_matrix, 0, COL-1, FALSE);
-  // end_time = clock();
-  //
-  // printf("Time it took to compute Dy matrix: %f seconds\n", ((double)(end_time - start_time))/CLOCKS_PER_SEC);
-  // _free_m_matrix(m_matrix);
-  //
-  //
+
   _search_min_max(dx_matrix, row*(col+2), dx_min_max);
   _search_min_max(dy_matrix, (row+2)*col, dy_min_max);
 
-  printf("Min value in Dx matrix: %hd\n", dx_min_max[0]);
-  printf("Max value in Dx matrix: %hd\n\n", dx_min_max[1]);
-
-  printf("Min value in Dy matrix: %hd\n", dy_min_max[0]);
-  printf("Max value in Dy matrix: %hd\n", dy_min_max[1]);
+  // printf("Min value in Dx matrix: %hd\n", dx_min_max[0]);
+  // printf("Max value in Dx matrix: %hd\n\n", dx_min_max[1]);
+  //
+  // printf("Min value in Dy matrix: %hd\n", dy_min_max[0]);
+  // printf("Max value in Dy matrix: %hd\n", dy_min_max[1]);
 
   free(dx_matrix);
   free(dy_matrix);
   //
   // _free_dx_matrix(dx_matrix);
   // _free_dy_matrix(dy_matrix);
-
-
+  printf("Done with work %ld\n", loop);
 }
 
 
@@ -156,7 +152,7 @@ int main()
   printf("========= RUNNING Convolve Optimization =========!\n");
   size_t row;
   size_t col;
-  thread_pool_t *thread_pool = create_thread_pool(1);
+  thread_pool_t *thread_pool = create_thread_pool(8);
 
 
   while (true)
@@ -172,15 +168,24 @@ int main()
     printf("========== ROW AND COL CANNOT BE ZERO ========\n");
   }
 
-  int *args = malloc(sizeof(int) * 2);
-  *args = row;
-  *(args+1) = col;
-  threadpool_add_work(thread_pool, _run_convolution, row, col);
+
+  clock_t start_time = clock();
+  for (size_t i = 1; i <= 50; i++)
+  {
+    int *args = malloc(sizeof(int) * 3);
+    *args = row;
+    *(args+1) = col;
+    *(args+2) = i;
+    threadpool_add_work(thread_pool, _run_convolution, args);
+  }
   threadpool_wait(thread_pool);
+  clock_t end_time = clock();
+
+  printf("Time it took to compute finish all the tasks: %f seconds\n", ((double)(end_time - start_time))/CLOCKS_PER_SEC);
   threadpool_destroy(thread_pool);
   printf ("\n ========= SIMULATION done =========\n");
+  // free (args);
 
-  free (args);
 
   return 0;
 }

@@ -15,9 +15,7 @@
 
 struct thread_worker {
     thread_func_t      func;
-    // void              *args;
-    size_t               row;
-    size_t               col;
+    void              *args;
     struct thread_worker *next;
 };
 
@@ -54,6 +52,7 @@ static thread_worker_t *get_thread_worker (thread_pool_t *t_pool)
 static void free_thread_worker(thread_worker_t *worker)
 {
   if (worker != NULL) {
+    free(worker->args);
     free(worker);
   }
 }
@@ -73,12 +72,12 @@ static void *thread_function(void *tm)
     if (tp->work_first == NULL)
       pthread_cond_wait(&(tp->working_cond), &(tp->pool_mutex));
     tp->working_cnt += 1;
+    next_worker = get_thread_worker(tp);
     pthread_mutex_unlock(&(tp->pool_mutex));
 
-    next_worker = get_thread_worker(tp);
     if (next_worker != NULL)
     {
-      (*next_worker->func)(next_worker->row, next_worker->col);
+      (*next_worker->func)(next_worker->args);
       free_thread_worker(next_worker);
     }
 
@@ -93,7 +92,7 @@ static void *thread_function(void *tm)
   if (tp->thread_cnt == 0)
     pthread_cond_broadcast(&(tp->end_cond));
   pthread_mutex_unlock(&(tp->pool_mutex));
-
+  pthread_exit(NULL);
 }
 
 
@@ -112,28 +111,25 @@ void threadpool_wait(thread_pool_t *t_pool)
 
 
 // Add new work to the threadpool
-bool threadpool_add_work(thread_pool_t *t_pool, void (*new_func), size_t row, size_t col)
+bool threadpool_add_work(thread_pool_t *t_pool, thread_func_t new_func, void *args)
 {
   thread_worker_t *new_worker = malloc(sizeof(thread_worker_t));
   new_worker->func = new_func;
-  new_worker->row = row;
-  new_worker->col = col;
+  new_worker->args = args;
   new_worker->next = NULL;
 
   pthread_mutex_lock(&(t_pool->pool_mutex));
 
   thread_worker_t *first_worker = t_pool->work_first;
-  thread_worker_t *last_worker = t_pool->work_last;
   if (first_worker == NULL)
   {
     t_pool->work_first = new_worker;
     t_pool->work_last = new_worker;
-    printf ("creating\n");
   }
   else
   {
-    last_worker->next = new_worker;
-    last_worker = new_worker;
+    t_pool->work_last->next = new_worker;
+    t_pool->work_last = new_worker;
   }
   pthread_cond_signal(&(t_pool->working_cond));
   pthread_mutex_unlock(&(t_pool->pool_mutex));
@@ -149,11 +145,13 @@ void threadpool_destroy(thread_pool_t* t_pool)
   thread_worker_t *worker = t_pool->work_first;
   while (worker != NULL) {
     thread_worker_t *tmp_worker = worker->next;
-    free(worker);
+    free_thread_worker(worker);
     worker = tmp_worker;
   }
+
   pthread_cond_broadcast(&(t_pool->working_cond));
   pthread_mutex_unlock(&(t_pool->pool_mutex));
+
   threadpool_wait(t_pool);
 
   pthread_mutex_destroy(&(t_pool->pool_mutex));
